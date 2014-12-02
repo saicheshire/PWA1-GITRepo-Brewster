@@ -45,7 +45,7 @@
             console.log(playerOneName+":"+playerOneHealth+" "+playerTwoName+":"+playerTwoHealth);//console log to make sure code is working correctly
 
             var results = winnerCheck();      //create a results variable which calls the winnerCheck function
-            console.log(results);
+            console.log(results);             //console logs results to make sure code is working properly
 
             if (results === "no winner"){    //if round results in no winner, the next round starts
                 round++;                    //adds one to the round
@@ -71,7 +71,7 @@
             result = playerOneName + " WINS!!!"             //message that player one wins is shown
         }                                                   //end if else statement
 
-        return result;
+        return result;                                      //return the value of result from the function
 
     }                                                       //end winnerCheck function
 
@@ -79,4 +79,4 @@
     console.log('program starts');              //troubleshoot to make sure program starts
     fight();                                    //set up a call for the fight function
 
-})();
+})();                                           //end self-executing function
