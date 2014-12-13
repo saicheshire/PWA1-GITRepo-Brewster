@@ -1,8 +1,8 @@
 /*
  Name: Melodie Brewster
- Date: 12/05/2014
+ Date: 12/12/2014
  Class & Section:  PWA1-01
- Assignment: Goal3: Assignment: Debug
+ Assignment: Debug Search v3
  */
 
 // Create privatized scope using a self-executing function
@@ -16,8 +16,6 @@
 	
 	// Validates search query
 	var validqte = function(query){		//fixed error: replaced == with single =
-
-		console.log("Right outside while loop for trimming space");	//console.log to make sure the error was within while loop
 
 		// Trim whitespace from start and end of search query
 		while(query.charAt(0) === " "){		//fixed error: replaced single = with comparison ===
@@ -43,7 +41,7 @@
 	var search = function(query){	//fixed error by adding opening curly brace
 		
 		// split the user's search query string into an array
-		var queryArray = query.join(" ");
+		var queryArray = query.split(" ");		//fixed error: changed .join to .split
 		
 		// array to store matched results from database.js
 		var results = [];
@@ -54,12 +52,12 @@
 			// each db[i] is a single video item, each title ends with a pipe "|"
 			// save a lowercase variable of the video title
 			var dbTitleEnd = db[i].indexOf('|');
-			var dbitem = db[i].tolowercase().substring(0, dbTitleEnd);
+			var dbitem = db[i].toLowerCase().substring(0, dbTitleEnd);		//fixed error: camel case on toLowerCase
 
 			// loop through the user's search query words
 			// save a lowercase variable of the search keyword
 			for (var ii = 0, jj = queryArray.length; ii < jj; ii++) {
-				var qitem = queryArray[ii].tolowercase();
+				var qitem = queryArray[ii].toLowerCase();		//fixed error: camel case on toLowerCase
 
 				// is the keyword anywhere in the video title?
 				// If a match is found, push full db[i] into results array
@@ -74,7 +72,7 @@
 		results.sort();
 		
 		// Check that matches were found, and run output functions
-		if(results.length = 0){
+		if(results.length === 0){		//fixed error: changed single equal to triple equal
 			noMatch();
 		}else{
 			showMatches(results);
@@ -98,14 +96,18 @@
 			title, 
 			url
 		;
+
+		console.log("What is the value of results.length?  " + results.length);
 		
 		// loop through all the results search() function
 		for(var i=0, j=results.length; i<j; i++){
+
+			console.log("My For Loop is working");
 		
 			// title of video ends with pipe
 			// pull the title's string using index numbers
 			titleEnd = results[i].indexOf('|');
-			title = results[i].subString(0, titleEnd);
+			title = results[i].substring(0, titleEnd);		//fixed error: changed substring to lowercase (was in camel case)
 			
 			// pull the video url after the title
 			url = results[i].substring(results[i].indexOf('|')+1, results[i].length);
